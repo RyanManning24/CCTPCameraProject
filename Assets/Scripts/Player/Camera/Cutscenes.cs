@@ -81,11 +81,6 @@ public class Cutscenes : MonoBehaviour
         mainCam.LookAt(Target.transform.position);
     }
 
-    void createGameObject()
-    {
-       // GameObject camStart = Instantiate(emptyGameobject, mainCam.transform.position, mainCam.rotation);
-    }
-
     IEnumerator ResetCamPoints()
     {
         while(true)
@@ -97,6 +92,7 @@ public class Cutscenes : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1);
 
                 currentCamPosition = 0;
+                startCutscene = false;
             }
             yield return null;
         }

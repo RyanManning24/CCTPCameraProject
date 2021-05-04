@@ -10,6 +10,7 @@ public class StartCutscene : MonoBehaviour
 
     public Transitions transitions;
     public Cutscenes cutscenesScript;
+    public GameObject MainCam;
 
     // Start is called before the first frame update
     void Start()
@@ -34,14 +35,21 @@ public class StartCutscene : MonoBehaviour
             transitions.ResetCamState();
             transitions.cutscene = true;
             transitions.transistion = true;
+            cutscenesScript.cutsceneSpeed = 0.2f;
+            MainCam.transform.rotation = Quaternion.Euler(0, 90, 0);
             cutscenesScript.startCutscene = true;
         }
-        else if (numOfEnter == 1)//dont think this is needed
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!cutscenesScript.startCutscene)
         {
             //Player is moving to the start
             numOfEnter = 0;
             transitions.ResetCamState();
-            //should be onRailsCam
+
             transitions.onThirdPersonCam = true;
             transitions.transistion = true;
         }
